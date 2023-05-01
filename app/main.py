@@ -1,6 +1,6 @@
 import pymysql
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from models.payload import Info, PayLoad
 from services.database_service import DatabaseService
@@ -32,8 +32,8 @@ app.add_middleware(SlowAPIMiddleware)
 
 
 @app.get("/")
-def index() -> str:
-    return "mindsdb communicator"
+def index() -> Response:
+    return Response("mindsdb communicator.")
 
 
 @app.post("/collect_info")
